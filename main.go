@@ -11,7 +11,6 @@ import (
 type Movie struct {
 	ID    uint `gorm:"primary_key"`
 	Title string
-	//ArtistID uint
 }
 
 type Artist struct {
@@ -126,7 +125,7 @@ func update() {
 	if err != nil {
 		panic(err.Error())
 	}
-	//	db.Model(&artists).Update(Artist{ID:5,Name:"Srk",Movies: movies[1],movies[2])
+
 	qry := "SET FOREIGN_KEY_CHECKS=0"
 	db.Exec(qry)
 	db.Model(Artist{}).Where("ID = ?", 1).Updates(Artist{ID: 111, Name: "laksksk"})
@@ -151,7 +150,7 @@ func join() {
 	if err != nil {
 		panic(err.Error())
 	}
-	// Get the list the artists for movie "Nayagan"
+	// Get the list the artists for movie "3 idiots"
 
 	artists = []Artist{}
 	if err = db.Joins("JOIN artist_movies on artist_movies.artist_id=artists.id").
